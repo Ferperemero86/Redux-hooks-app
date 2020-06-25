@@ -1,5 +1,5 @@
 //require ("babel-runtime/regenerator");
-require("webpack-hot-middleware/client");
+require("webpack-hot-middleware/client?reload=true");
 require ("./style.scss");
 require ("./index.html");
 
