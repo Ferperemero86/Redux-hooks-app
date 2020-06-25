@@ -3,6 +3,11 @@ const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+    resolve: {
+        alias: {
+          'react-dom': '@hot-loader/react-dom',
+        },
+    },
     entry: {
         main: ["./src/main.js"]
     },

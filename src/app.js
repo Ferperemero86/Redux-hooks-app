@@ -1,10 +1,26 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {AppContainer} from "react-hot-loader";
 
-const Test = () => {
-    return <h1 className="test">Testing</h1>;
-}
+import Counter from "./components/Counter";
 
 const wrapper = document.querySelector("#root");
 
-ReactDOM.render(<Test />, wrapper);
+const render = (Component) => {
+    ReactDOM.render(
+        <AppContainer>
+            <Component />
+        </AppContainer>,
+        wrapper
+    );
+}
+
+render(Counter);
+
+if (module.hot) {
+    module.hot.accept(Counter, () => {
+        const NewCounter = Counter.default;
+
+        render(NewCounter)
+    })
+}
