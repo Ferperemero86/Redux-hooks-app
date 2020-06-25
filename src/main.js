@@ -1,4 +1,4 @@
-require ("babel-runtime/regenerator");
+//require ("babel-runtime/regenerator");
 require ("./style.scss");
 require ("./index.html");
 
