@@ -23,7 +23,9 @@ if(!isProd) {
 //const staticMiddleWare = express.static("dist");
 //server.use(staticMiddleWare);
 const expressStaticGzip = require("express-static-gzip");
-server.use(expressStaticGzip("dist"));
+server.use(expressStaticGzip("dist", {
+    enableBrotli: true
+}));
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {

@@ -4,6 +4,7 @@ const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const MinifyPlugin = require("babel-minify-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
+const BrotliPlugin = require("brotli-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -27,7 +28,12 @@ module.exports = {
         rules: [
             {
                 test: /\.(scss|css)$/,
-                use: [MiniCSSExtractPlugin.loader, "css-loader", "sass-loader"]
+                use: [
+                    {
+                        loader: MiniCSSExtractPlugin.loader, 
+                        loader: "css-loader"
+                    }
+                ]
             },
             {
                 test: /\.(js|jsx)$/,
@@ -82,6 +88,7 @@ module.exports = {
         new CompressionPlugin({
             algorithm: "gzip",
             test: /\.(js|css|html|jpg|png)$/,
-        })
+        }),
+        new BrotliPlugin()
     ]
 }
