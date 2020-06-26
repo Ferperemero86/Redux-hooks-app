@@ -59,10 +59,17 @@ module.exports = {
         ]
     },
     plugins: [
-        new OptimizedCssAssetsPlugin(),
+        new OptimizedCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require("cssnano"),
+            cssProcessorOptions: {discardComments: {
+                removeAll: true,
+                canPrint: true
+            }}
+        }),
         new MinifyPlugin(),
         new MiniCSSExtractPlugin({
-            filename: "[name]-[contenthash].css"
+            filename: "[name].css"
         }),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
@@ -73,7 +80,8 @@ module.exports = {
             }
         }),
         new CompressionPlugin({
-            algorithm: "gzip"
+            algorithm: "gzip",
+            test: /\.(js|css|html|jpg|png)$/,
         })
     ]
 }

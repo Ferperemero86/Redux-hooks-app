@@ -2,8 +2,7 @@
 //require("react-hot-loader/patch");
 //require("babel-register");
 //require("webpack-hot-middleware/client?reload=true");
-require ("./style.scss");
-require ("./test.scss");
+require ("./main.css");
 require ("./index.html");
 require("./App");
 console.log(`enviromenrt is ${process.env.NODE_ENV}`);
