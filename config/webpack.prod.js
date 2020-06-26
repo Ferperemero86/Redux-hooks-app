@@ -28,12 +28,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(scss|css)$/,
-                use: [
-                    {
-                        loader: MiniCSSExtractPlugin.loader, 
-                        loader: "css-loader"
-                    }
-                ]
+                use: [MiniCSSExtractPlugin.loader, "css-loader"]
             },
             {
                 test: /\.(js|jsx)$/,
@@ -75,11 +70,11 @@ module.exports = {
         }),
         new MinifyPlugin(),
         new MiniCSSExtractPlugin({
-            filename: "[name].css"
+            filename: "style.css"
         }),
-        new HtmlWebpackPlugin({
-            template: "./src/index.html"
-        }),
+        //new HtmlWebpackPlugin({
+        //    template: "./src/index.html"
+        //}),
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify("production")

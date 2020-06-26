@@ -1,5 +1,10 @@
 import express from "express";
 import path from "path";
+import React from "react";
+import ReactDOMServer from "react-dom/server";
+
+import App from "../components/App";
+
 const server = express();
 
 const isProd = process.env.NODE_ENV === "production";
@@ -20,12 +25,25 @@ if(!isProd) {
     server.use(webpackHotMiddleware);
 }
 
-//const staticMiddleWare = express.static("dist");
-//server.use(staticMiddleWare);
 const expressStaticGzip = require("express-static-gzip");
 server.use(expressStaticGzip("dist", {
     enableBrotli: true
 }));
+
+server.get("*", (req, res) => {
+    res.send(`
+        <html>
+            <head>
+                <link href="style.css" rel="stylesheet">
+            </head>
+            <body>
+                <div id="root">
+                    ${ReactDOMServer.renderToString(<App />)}
+                </div>
+            </body>
+        </html>
+    `)
+})
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
