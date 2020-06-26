@@ -2,6 +2,8 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const MinifyPlugin = require("babel-minify-webpack-plugin");
+const CompressionPlugin = require("compression-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -58,11 +60,20 @@ module.exports = {
     },
     plugins: [
         new OptimizedCssAssetsPlugin(),
+        new MinifyPlugin(),
         new MiniCSSExtractPlugin({
             filename: "[name]-[contenthash].css"
         }),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
+        }),
+        new webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify("production")
+            }
+        }),
+        new CompressionPlugin({
+            algorithm: "gzip"
         })
     ]
 }

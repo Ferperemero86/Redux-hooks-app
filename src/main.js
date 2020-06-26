@@ -1,12 +1,12 @@
 //require ("babel-runtime/regenerator");
-require("react-hot-loader/patch");
-require("babel-register");
+//require("react-hot-loader/patch");
+//require("babel-register");
 //require("webpack-hot-middleware/client?reload=true");
 require ("./style.scss");
 require ("./test.scss");
 require ("./index.html");
-require("./app");
-
+require("./App");
+console.log(`enviromenrt is ${process.env.NODE_ENV}`);
 //const a = async () => {
 //   await console.log("Hello from the future!"); 
 //}
