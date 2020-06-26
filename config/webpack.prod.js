@@ -1,5 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -10,28 +12,20 @@ module.exports = {
     },
     entry: {
         main: [
-            "webpack-hot-middleware/client?reload=true",
-            "./src/main.js"]
+            "./src/main.js"
+        ]
     },
-    mode: "development",
+    mode: "production",
     output: {
         filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "../dist"),
         publicPath: "/"
     },
-    devServer: {
-        contentBase: "dist",
-        overlay: true,
-        stats: {
-            colors: true
-        },
-        hot: true
-    },
     module: {
         rules: [
             {
                 test: /\.(scss|css)$/,
-                use: ["style-loader", "css-loader", "sass-loader"]
+                use: [MiniCSSExtractPlugin.loader, "css-loader", "sass-loader"]
             },
             {
                 test: /\.(js|jsx)$/,
@@ -63,7 +57,10 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
+        new OptimizedCssAssetsPlugin(),
+        new MiniCSSExtractPlugin({
+            filename: "[name]-[contenthash].css"
+        }),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
         })

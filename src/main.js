@@ -1,8 +1,9 @@
 //require ("babel-runtime/regenerator");
 require("react-hot-loader/patch");
 require("babel-register");
-require("webpack-hot-middleware/client?reload=true");
+//require("webpack-hot-middleware/client?reload=true");
 require ("./style.scss");
+require ("./test.scss");
 require ("./index.html");
 require("./app");
 

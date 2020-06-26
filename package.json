@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config=config/webpack.dev.js",
-    "build": "webpack --config=config/webpack.dev.js",
+    "build:dev": "webpack --config=config/webpack.dev.js",
+    "build": "webpack --config=config/webpack.prod.js",
     "dev": "nodemon --watch config --watch src/server src/server/main.js",
-    "prod": "node src/server/main.js"
+    "prod": "NODE_ENV=production node src/server/main.js"
   },
   "author": "Fernando Perez Merono",
   "license": "ISC",
@@ -25,6 +26,8 @@
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "sass": "^1.26.9",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.2.1",
@@ -37,7 +40,6 @@
     "@babel/runtime": "^7.10.3",
     "@hot-loader/react-dom": "^16.13.0",
     "react": "^16.8.0",
-    "react-dom": "npm:@hot-loader/react-dom",
     "react-hot-loader": "^4.5.3"
   }
 }
