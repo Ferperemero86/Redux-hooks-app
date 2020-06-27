@@ -4,7 +4,7 @@
   "description": "\"Assesment with redux, webpack and babel\"",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch src/server --watch config --inspect",
+    "dev": "nodemon --watch src/server --watch config --inspect src/server/main.js",
     "prod": "NODE_ENV=production node src/server/main.js"
   },
   "author": "Fernando Perez Merono",
@@ -36,6 +36,7 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-hot-middleware": "^2.25.0",
+    "webpack-hot-server-middleware": "^0.6.1",
     "webpack-node-externals": "^1.7.2"
   },
   "dependencies": {

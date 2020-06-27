@@ -10,7 +10,7 @@ import Counter from "./Counter";
 //        <AppContainer>
 //            <Component />
 //        </AppContainer>,
-//        wrapper
+//        document.querySelector("#root")
 //    );
 //}
 //
