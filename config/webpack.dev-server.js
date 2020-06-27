@@ -6,6 +6,7 @@ const nodeExternals = require("webpack-node-externals");
 
 module.exports = env => {
     return {
+        name: "server",
         resolve: {
             alias: {
               'react-dom': '@hot-loader/react-dom',

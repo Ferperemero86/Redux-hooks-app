@@ -2,29 +2,28 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const MinifyPlugin = require("babel-minify-webpack-plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
-const BrotliPlugin = require("brotli-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = env => {
     return {
+        name: "server",
         resolve: {
             alias: {
               'react-dom': '@hot-loader/react-dom',
             },
         },
         entry: {
-            main: [
-                "./src/main.js"
+            server: [
+                "./src/server/main.js"
             ]
         },
         mode: "production",
         output: {
             filename: "[name]-bundle.js",
-            path: path.resolve(__dirname, "../dist"),
-            publicPath: "/"
+            path: path.resolve(__dirname, "../build")
         },
+        target: "node",
+        externals: nodeExternals(),
         module: {
             rules: [
                 {
@@ -69,23 +68,14 @@ module.exports = env => {
                     canPrint: true
                 }}
             }),
-            new MinifyPlugin(),
             new MiniCSSExtractPlugin({
                 filename: "style.css"
             }),
-            //new HtmlWebpackPlugin({
-            //    template: "./src/index.html"
-            //}),
             new webpack.DefinePlugin({
                 "process.env": {
                     "NODE_ENV": JSON.stringify(env.NODE_ENV)
                 }
             }),
-            new CompressionPlugin({
-                algorithm: "gzip",
-                test: /\.(js|css|html|jpg|png)$/,
-            }),
-            new BrotliPlugin()
         ]
     }
 }

@@ -1,37 +1,33 @@
 const path = require("path");
 const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
+    name: "client",
     resolve: {
         alias: {
           'react-dom': '@hot-loader/react-dom',
         },
     },
     entry: {
-        main: [
-            "webpack-hot-middleware/client?reload=true",
-            "./src/main.js"]
+        server: [
+            "./src/server/main.js"
+        ]
     },
-    mode: "development",
+    mode: "production",
     output: {
         filename: "[name]-bundle.js",
-        path: path.resolve(__dirname, "../dist"),
-        publicPath: "/"
+        path: path.resolve(__dirname, "../build")
     },
-    devServer: {
-        contentBase: "dist",
-        overlay: true,
-        stats: {
-            colors: true
-        },
-        hot: true
-    },
+    target: "node",
+    externals: nodeExternals(),
     module: {
         rules: [
             {
                 test: /\.(scss|css)$/,
-                use: ["style-loader", "css-loader", "sass-loader"]
+                use: [MiniCSSExtractPlugin.loader, "css-loader"]
             },
             {
                 test: /\.(js|jsx)$/,
@@ -63,9 +59,22 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        //new HtmlWebpackPlugin({
-        //    template: "./src/index.html"
-        //})
+        new OptimizedCssAssetsPlugin({
+            assetNameRegExp: /\.css$/g,
+            cssProcessor: require("cssnano"),
+            cssProcessorOptions: {discardComments: {
+                removeAll: true,
+                canPrint: true
+            }}
+        }),
+        new MiniCSSExtractPlugin({
+            filename: "style.css"
+        }),
+        new webpack.DefinePlugin({
+            "process.env": {
+                "NODE_ENV": JSON.stringify(env.NODE_ENV)
+            }
+        }),
     ]
+    
 }
