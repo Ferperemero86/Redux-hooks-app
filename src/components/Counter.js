@@ -5,7 +5,7 @@ const Counter = () => {
 
     const updateState = (e) => {
         e.preventDefault();
-        console.log("click");
+
         setCount(count + 1);
     }
 
