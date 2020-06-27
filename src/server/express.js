@@ -38,6 +38,7 @@ server.get("*", (req, res) => {
             </head>
             <body>
                 <div id="root">
+                    <h1>Hello que ase</h1>
                     ${ReactDOMServer.renderToString(<App />)}
                 </div>
             </body>
