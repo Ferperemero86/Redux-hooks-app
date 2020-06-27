@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-//const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     name: "client",
@@ -11,13 +10,12 @@ module.exports = {
           'react-dom': '@hot-loader/react-dom',
         },
     },
-    entry: {
-        main: [
+    entry: [
             "react-hot-loader/patch",
             "webpack-hot-middleware/client?reload=true",
             "./src/main.js"
         ]
-    },
+    ,
     output: {
         filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "../dist"),
@@ -25,6 +23,7 @@ module.exports = {
     },
     devServer: {
         contentBase: "dist",
+        hot: true,
         overlay: true,
         stats: {
             colors: true
@@ -83,6 +82,7 @@ module.exports = {
                 "NODE_ENV": JSON.stringify("development")
             }
         }),
+        new webpack.HotModuleReplacementPlugin()
         //new HtmlWebpackPlugin({
         //    template: "./src/index.html"
         //})

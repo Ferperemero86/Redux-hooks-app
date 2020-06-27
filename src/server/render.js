@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 
-import App from "../components/App";
+import AppRoot from "../components/AppRoot";
 
 
 export default () => (req, res) => {
@@ -11,7 +11,8 @@ export default () => (req, res) => {
                 <link href="style.css" rel="stylesheet">
             </head>
             <body>
-                <div id="root">${ReactDOMServer.renderToString(<App />)}</div>
+                <div id="root">${ReactDOMServer.renderToString(<AppRoot />)}</div>
+                <script src="main-bundle.js"></script>
             </body>
         </html>
     `)

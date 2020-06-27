@@ -14,7 +14,7 @@ module.exports = {
     entry: "./src/server/render.js",
     mode: "development",
     output: {
-        filename: "dev-server-bundle.js",
+        filename: "main-bundle.js",
         path: path.resolve(__dirname, "../build"),
         libraryTarget: "commonjs2"
     },
