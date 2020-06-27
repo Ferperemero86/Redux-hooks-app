@@ -30,14 +30,16 @@ if(!isProd) {
     server.use(webpackHotMiddleware);
     server.use(webpackHotServerMiddleware(compiler));
 } else {
-    const render = require("./render");
+    webpack([configProdClient, configProdServer]).run((err, stats) => {
+        const render = require("../../build/main-bundle").default;
 
-    const expressStaticGzip = require("express-static-gzip");
-    server.use(expressStaticGzip("dist", {
-        enableBrotli: true
-    }));
+        const expressStaticGzip = require("express-static-gzip");
+        server.use(expressStaticGzip("dist", {
+            enableBrotli: true
+        }));
 
-    server.use(render()); 
+        server.use(render()); 
+    });
 }
 
 const PORT = process.env.PORT || 8080;

@@ -2,7 +2,6 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
 
 module.exports = {
     name: "client",
@@ -11,18 +10,21 @@ module.exports = {
           'react-dom': '@hot-loader/react-dom',
         },
     },
-    entry: {
-        server: [
-            "./src/server/main.js"
-        ]
-    },
+    entry: "./src/main.js",
     mode: "production",
     output: {
         filename: "[name]-bundle.js",
-        path: path.resolve(__dirname, "../build")
+        path: path.resolve(__dirname, "../dist"),
+        publicPath: "/"
     },
-    target: "node",
-    externals: nodeExternals(),
+    devServer: {
+        contentBase: "dist",
+        hot: true,
+        overlay: true,
+        stats: {
+            colors: true
+        }
+    },
     module: {
         rules: [
             {
