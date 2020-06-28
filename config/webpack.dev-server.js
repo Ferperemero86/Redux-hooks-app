@@ -68,6 +68,9 @@ module.exports = {
                 "NODE_ENV": JSON.stringify("development")
             }
         }),
+        new webpack.optimize.LimitChunkCountPlugin({
+            maxChunks: 1
+        })
     ]
    
 }
