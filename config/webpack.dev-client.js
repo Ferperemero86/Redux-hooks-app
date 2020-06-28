@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+//const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     name: "client",
@@ -73,6 +74,9 @@ module.exports = {
                 canPrint: true
             }}
         }),
+        //new HTMLWebpackPlugin({
+        //    template: "./src/index.html"
+        //}),
         new webpack.DefinePlugin({
             "process.env": {
                 "NODE_ENV": JSON.stringify("development")

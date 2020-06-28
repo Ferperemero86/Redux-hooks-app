@@ -1,11 +1,14 @@
 import React from "react";
 import {hot} from 'react-hot-loader/root';
+import {BrowserRouter as Router, Route} from "react-router-dom";
 
-import Counter from "../components/Counter";
+import Routes from "./Routes";
 
 const AppRoot = () => {
     return (
-        <Counter />
+        <Router>
+            <Routes />
+        </Router>
     )
 }
 

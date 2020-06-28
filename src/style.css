@@ -1,8 +1,2 @@
-body {
-    background-color: green;
-}
+@import "./nav.css";
 
-img {
-    width: 50%;
-    margin: 20px auto;
-}
