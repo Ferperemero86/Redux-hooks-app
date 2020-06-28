@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
+const externals = require("./node-externals");
 
 module.exports = {
     name: "server",
@@ -19,7 +19,7 @@ module.exports = {
         libraryTarget: "commonjs2"
     },
     target: "node",
-    externals: nodeExternals(),
+    externals,
     module: {
         rules: [
             {

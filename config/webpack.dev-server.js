@@ -1,7 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const OptimizedCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
-const nodeExternals = require("webpack-node-externals");
+const externals = require("./node-externals");
 
 module.exports = {
     name: "server",
@@ -18,7 +18,7 @@ module.exports = {
         libraryTarget: "commonjs2"
     },
     target: "node",
-    externals: nodeExternals(),
+    externals,
     module: {
         rules: [
             {

@@ -1,0 +1,1 @@
+exports.ids=[1],exports.modules={26:function(e,t,u){"use strict";t.hot=function(e){return e}},5:function(e,t,u){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=o(u(0)),r=(u(26),u(14)),l=o(u(1));function o(e){return e&&e.__esModule?e:{default:e}}t.default=function(){return n.default.createElement(r.BrowserRouter,null,n.default.createElement(l.default,null))}}};
