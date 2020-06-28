@@ -14,8 +14,9 @@ const Counter = () => {
             <div>
                 <p>Counter: {count}</p>
             </div>
-            <h1 className="test">Testi</h1>
+            <h1 className="test">Test</h1>
             <button onClick={updateState}>Change state</button>
+            <img src="images/ps5.jpg" />
         </div>
     )
 }
